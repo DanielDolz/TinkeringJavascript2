@@ -23,20 +23,13 @@ const app = new Vue({
 });
 
 
-var animals = require('./animal');
+// Dog looks just like it.
+var Dog = function() {
+    Animal.apply(this, arguments);
+};
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
 
-// POLUCIÓ del NAMESPACE global/window
-
-var anim = new animals.Animal();
-var perro = new animals.Dog();
-
-// require('./dog');
-// require('./cat');
-
-// var dog = new Dog();
-// var cat = new Cat();
-//
-// cat.eat();
-// cat.say();
-// dog.eat();
-// dog.say();
+Dog.prototype.say = function() {
+    console.log('bark');
+}

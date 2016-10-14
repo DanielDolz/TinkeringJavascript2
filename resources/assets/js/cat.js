@@ -23,20 +23,16 @@ const app = new Vue({
 });
 
 
-var animals = require('./animal');
+//This is how you "inherit" from it: SYNTAX SUGAR
+var Cat = function() {
+    Animal.apply(this, arguments);
+    // Cat initialization using Animal constructor
+};
+// Definim
+Cat.prototype = Object.create(Animal.prototype);
+Cat.prototype.constructor = Cat;
+// Implementem
+Cat.prototype.say = function() {
+    console.log('meow');
+}
 
-// POLUCIÓ del NAMESPACE global/window
-
-var anim = new animals.Animal();
-var perro = new animals.Dog();
-
-// require('./dog');
-// require('./cat');
-
-// var dog = new Dog();
-// var cat = new Cat();
-//
-// cat.eat();
-// cat.say();
-// dog.eat();
-// dog.say();
